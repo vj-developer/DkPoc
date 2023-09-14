@@ -40,6 +40,25 @@ struct CounterView: View {
                     .background(Color.black.opacity(0.1))
                     .cornerRadius(10)
                 }
+                
+                Button {
+                    viewStore.send(.getFactButtonTapped)
+                } label: {
+                    Text("Get Fact")
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(.blue)
+                        .cornerRadius(10)
+                        .padding()
+                }
+                
+                // Loader & Fact View
+                if viewStore.isLoading {
+                    ProgressView()
+                }else if let fact = viewStore.fact{
+                    Text(fact)
+                        .padding()
+                }
             }
             .frame(maxWidth: .infinity,maxHeight: .infinity)
         }
